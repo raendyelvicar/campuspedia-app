@@ -9,17 +9,18 @@
           </button>
         </div>
         <div class="modal-body">
-            <form id="news-form" enctype="multipart/form-data">
+            <form id="update-news" enctype="multipart/form-data">
                 {{  csrf_field()  }}
+
                 <div class="form-group">
                     <label for="formFile" class="form-label">Thumbnail</label>
-                    <input class="form-control" type="file" name="file" id="file">
+                    <input class="form-control" type="file" name="imgURL" id="imgURL">
                 </div>
 
                 <div class="form-group row">
                     <div class="col">
                         <label for="LastNameInputLabel">Category</label>
-                        <input type="text" class="form-control" name="category" id="category" value="category">
+                        <input type="text" class="form-control" name="category" id="category">
                     </div>
                     <div class="col">
                     <label for="PositionInputLabel">Author</label>
@@ -34,11 +35,11 @@
                     <label for="BioInputLabel">Content</label>
                     <textarea class="form-control" name="content" id="content" row="12"></textarea>
                 </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary" id="save-btn" >Save changes</button>
+                </div>
             </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>

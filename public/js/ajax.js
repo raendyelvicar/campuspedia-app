@@ -17,8 +17,33 @@ $(document).ready(function (event) {
             $('input[name="author"]').val(data.data.author);
             $('input[name="title"]').val(data.data.title);
             $('input[name="content"]').val(data.data.content);
+            update_news(id);
         });
     });
+
+    function update_news(id) {
+        var id = id;
+        $("form#update-news").submit(function (event) {
+            event.preventDefault();
+            var formData = new FormData(this);
+
+            $.ajax({
+                type: "POST",
+                url: "/news/" + id + "/edit",
+                enctype: "multipart/form-data",
+                data: formData,
+                dataType: "JSON",
+                success: function (response) {
+                    console.log(response.message);
+                    location.reload();
+                    // location.reload();
+                },
+                cache: false,
+                contentType: false,
+                processData: false,
+            });
+        });
+    }
 
     //Delete modal window
     $(document).on("click", "#delete-news", function (event) {

@@ -45,10 +45,49 @@ class NewsController extends Controller
         return redirect()->back();
     }
 
-    public function update($id){
+    public function update(Request $request){
+        $id = $request->id;
+        $imgFile = $request->file("imgURL");
+        $category = $request->input("category");
+        $author = $request->input("author");
+        $title = $request->input("title");
+        $content = $request->input("content");
+        $current_date_time = \Carbon\Carbon::now()->toDateTimeString();
 
-        $found = News::find($id);
-        return response()->json(['data'=>$found]);
+
+        $fileName = 'img_'.time().'_'.$imgFile->getClientOriginalName();
+        $imgFile->storeAs('public/img', $fileName);
+        $imgURL = Storage::url('/img/'.$fileName);
+
+        $found = DB::table('news')->where('id', $id);
+
+        if($found){
+            $found->update([
+                'thumbnailURL' => $imgURL,
+                'category' => $category,
+                'author' => $author,
+                'title' => $title,
+                'content' => $content,
+                'updated_at' => $current_date_time
+            ]);
+
+            $msg = "Data succesfully updated.";
+
+            $arr = [
+                'message'=>'Its worked',
+                'id'=>$id,
+                'thumbnail'=> $imgURL,
+                'category' => $category,
+                'author' =>$author,
+                'title' =>$title,
+                'content' => $content
+            ];
+        }else{
+            $msg = "User not found";
+        }
+
+
+        return response()->json(['message'=>$arr]);
     }
 
     public function getById($id){
