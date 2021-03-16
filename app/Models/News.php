@@ -9,5 +9,5 @@ class News extends Model
 {
     use HasFactory;
 
-    protected $timestamps = true;
+    public $timestamps = true;
 }

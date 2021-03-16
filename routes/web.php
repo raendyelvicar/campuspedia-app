@@ -15,10 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $data = DB::select('select * from news');
-    return view('landingpage', ['data'=>$data]);
-});
-
-
-Route::post('/news', [NewsController::class, 'store']);
+Route::get('/', [NewsController::class, 'index'])->name('news.index');
+Route::get('/news', [NewsController::class, 'view'])->name('news.view');
+Route::post('/news', [NewsController::class, 'store'])->name('news.create');
+Route::put('/news/{id}/edit', [NewsController::class, 'update'])->name('news.update');
+Route::get('/news/{id}', [NewsController::class, 'getById'])->name('news.getById');
+Route::post('/news/{id}', [NewsController::class, 'delete'])->name('news.delete');

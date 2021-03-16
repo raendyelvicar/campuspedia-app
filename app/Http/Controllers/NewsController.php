@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -9,6 +10,15 @@ use Illuminate\Support\Facades\Storage;
 class NewsController extends Controller
 {
     //
+    public function index(){
+        $data = DB::select('select * from news');
+        return view('landingpage', ['data'=>$data]);
+    }
+
+    public function view(){
+        return view('add_news');
+    }
+
     public function store(Request $request){
         $file = $request->file("file");
         $category = $request->input("category");
@@ -34,4 +44,25 @@ class NewsController extends Controller
         ]);
         return redirect()->back();
     }
+
+    public function update($id){
+
+        $found = News::find($id);
+        return response()->json(['data'=>$found]);
+    }
+
+    public function getById($id){
+
+        $found = News::find($id);
+        return response()->json(['data'=>$found]);
+    }
+
+    public function delete($id){
+
+        $found = News::find($id);
+
+        $found->delete();
+        return response()->json(['message'=>'Data deleted successfully']);
+    }
+
 }
