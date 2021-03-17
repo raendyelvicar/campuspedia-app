@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -15,9 +16,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [NewsController::class, 'index'])->name('news.index');
-Route::get('/news', [NewsController::class, 'view'])->name('news.view');
-Route::post('/news', [NewsController::class, 'store'])->name('news.create');
-Route::post('/news/{id}/edit', [NewsController::class, 'update'])->name('news.update');
-Route::get('/news/{id}', [NewsController::class, 'getById'])->name('news.getById');
-Route::post('/news/{id}', [NewsController::class, 'delete'])->name('news.delete');
+Route::get('/', [ContactController::class, 'view'])->name('contact.view');
+Route::get('/contact/{id}', [ContactController::class, 'get_contact'])->name('contact.getById');
+Route::post('/contact', [ContactController::class, 'add_contact'])->name('contact.add');
+Route::post('/contact/{id}/edit', [ContactController::class, 'update_contact'])->name('contact.update');
+Route::post('/contact/{id}', [ContactController::class, 'delete_contact'])->name('contact.delete');
