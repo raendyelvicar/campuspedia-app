@@ -1,7 +1,7 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <!-- Update Modal -->
-  <div class="modal fade" id="update-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal fade" id="update-form" data-dismiss="" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -39,18 +39,10 @@
                     <span class="text-danger">{{ $errors->first('phone_number') }}</span>
                 </div>
                <div class="form-group">
-                   <button type="submit" class="cust-btn cust-btn-primary" id="update-contact-btn"> Submit </button>
+                   <button type="submit" class="cust-btn cust-btn-primary" data-dismiss="" id="update-contact-btn"> Submit </button>
                </div>
             </form>
         </div>
       </div>
     </div>
   </div>
-
-<script>
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-</script>

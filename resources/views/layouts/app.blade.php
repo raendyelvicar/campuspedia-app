@@ -12,13 +12,9 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.css') }}">
-    {{-- <link rel="stylesheet" href="{{ URL::asset('css/font-awesome.min.css') }}"> --}}
     <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/responsive.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/colors.css') }}">
-
-    @yield('extra-css')
-    @yield('extra-js')
 
     <script src="https://kit.fontawesome.com/0f2732326e.js" crossorigin="anonymous"></script>
 </head>
@@ -30,12 +26,13 @@
 
 
     <!-- Core JavaScript
-    ================================================== -->
-
-    <script src="{{URL::asset('js/jquery.min.js')}}"></script>
-    <script src="{{URL::asset('js/tether.min.js')}}"></script>
-    <script src="{{URL::asset('js/bootstrap.min.js')}}"></script>
-    <script src="{{URL::asset('js/custom.js')}}"></script>
+        ================================================== -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="{{asset('js/ajax.js')}}"></script>
+        <script src="{{URL::asset('js/jquery.min.js')}}"></script>
+        <script src="{{URL::asset('js/tether.min.js')}}"></script>
+        <script src="{{URL::asset('js/bootstrap.min.js')}}"></script>
 
     <script>
         $('#myModal').on('shown.bs.modal', function () {

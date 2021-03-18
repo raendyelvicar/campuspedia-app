@@ -52,7 +52,7 @@ $(document).ready(function (event) {
                     var phone_number = document.getElementById(
                         "edit_phone_number"
                     ).value;
-                    // console.log([firstname, lastname, email, phone_number]);
+
                     $.ajax({
                         url: "http://127.0.0.1:8000/contact/" + id + "/edit",
                         type: "POST",

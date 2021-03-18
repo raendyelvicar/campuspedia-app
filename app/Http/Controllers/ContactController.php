@@ -11,9 +11,15 @@ use Illuminate\Support\Facades\DB;
 class ContactController extends Controller
 {
     //
-    public function view(){
-        $data = DB::select('select * from contacts');
-        return view('contact', ['data'=>$data]);
+    public function view(Request $request){
+        if($request->ajax()){
+            $data = Contact::all()->sortByDesc('id')->take(1)->toArray();
+             return view('contact', ['data'=>$data]);
+        }
+        else{
+            $data = Contact::all();
+            return view('contact', ['data'=>$data]);
+        }
     }
 
     public function add_contact(Request $request){
